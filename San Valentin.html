@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>San Valentín</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #ffe6f0;
+    }
+    h1 {
+      margin-top: 20px;
+      color: #d63384;
+    }
+    img {
+      max-width: 300px;
+      margin: 20px auto;
+      display: block;
+      border-radius: 10px;
+    }
+    .options {
+      margin-top: 20px;
+    }
+    button {
+      font-size: 18px;
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #yes {
+      background-color: #ff4da6;
+      color: white;
+    }
+    #no {
+      background-color: #999;
+      color: white;
+    }
+    #message {
+      font-size: 40px;
+      color: #d63384;
+      margin-top: 30px;
+      display: none;
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    /* Animación de entrada (zoom + fade in) */
+    #message.show {
+      display: block;
+      animation: zoomIn 0.8s ease forwards, heartbeat 1s infinite 0.8s;
+    }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.2); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <h1>¿Te gustaría ser mi san Valentín hermosa?</h1>
+  <img src="fotito.jpeg" alt="Foto">
+  <div class="options" id="options">
+    <button id="yes">Obvio microbio</button>
+    <button id="no">No wakala</button>
+  </div>
+  <div id="message">TEE AAAMOOO ♥️</div>
+
+  <script>
+    const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+    const optionsDiv = document.getElementById('options');
+    const message = document.getElementById('message');
+
+    yesBtn.addEventListener('click', () => {
+      optionsDiv.style.display = 'none'; // Oculta ambos botones
+      message.classList.add('show');     // Activa animación zoom + latido
+    });
+
+    noBtn.addEventListener('click', () => {
+      let scale = 1;
+      const interval = setInterval(() => {
+        scale += 1;
+        yesBtn.style.transform = `scale(${scale})`;
+        if (scale === 5) {
+          clearInterval(interval);
+          noBtn.style.display = 'none';
+        }
+      }, 300);
+    });
+  </script>
+</body>
+</html>
